@@ -27,4 +27,4 @@ EXPOSE 8000
 # - --port 8000: Uvicorn listens on port 8000 (matches EXPOSE)
 # - --workers 4: (Optional but recommended for production) Runs multiple Uvicorn worker processes
 #                Adjust based on your server's CPU cores.
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "$PORT", "--workers", "4"]
