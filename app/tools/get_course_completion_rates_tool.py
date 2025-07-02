@@ -8,6 +8,5 @@ def get_course_completion_rates_tool() -> dict:
     for a course have been marked as completed (paid).
     Returns a dictionary of courses and their completion percentages.
     """
-    # Assume MongoDBTool().get_course_completion_rates returns a dictionary
-    # like {'Course A': '85%', 'Course B': '70%'}
+
     return MongoDBTool().get_course_completion_rates()

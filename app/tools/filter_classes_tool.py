@@ -10,5 +10,4 @@ def filter_classes_tool(query: str) -> list:
     The input should be a keyword to filter upcoming classes by instructor name or course name (e.g., 'Anjali' or 'Yoga').
     Returns a list of filtered classes.
     """
-    # Assume MongoDBTool().filter_classes returns a list of class dictionaries/objects
     return MongoDBTool().filter_classes(query=query)

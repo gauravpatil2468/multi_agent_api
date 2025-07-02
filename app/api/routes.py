@@ -5,12 +5,12 @@ from app.models.common import AgentAPIResponse, AgentResponseData # Import speci
 
 router = APIRouter()
 
-# Dependency for SupportAgent
+
 def get_support_agent_instance() -> SupportAgent:
     """Provides a SupportAgent instance."""
     return SupportAgent()
 
-# Dependency for DashboardAgent
+
 def get_dashboard_agent_instance() -> DashboardAgent:
     """Provides a DashboardAgent instance."""
     return DashboardAgent()
@@ -57,7 +57,7 @@ async def dashboard_query(
     """
     try:
         result = dashboard_agent.run(q)
-        # Dashboard agent doesn't use cache in this setup, so cached is always False
+        
         return AgentAPIResponse(
             message="Query processed successfully by Dashboard Agent.",
             data=AgentResponseData(agent_response=result),

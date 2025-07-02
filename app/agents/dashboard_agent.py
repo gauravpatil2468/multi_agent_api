@@ -34,7 +34,7 @@ class DashboardAgent:
                 get_attendance_percentage_by_class_tool,
             ],
             llm=direct_llm, 
-            verbose=True, # Good for debugging
+            verbose=True,
             allow_delegation=False,
             backstory=(
                 "You are an expert AI analyst providing key business metrics and insights from the MongoDB database. "
@@ -45,8 +45,7 @@ class DashboardAgent:
         )
 
     def run(self, prompt: str):
-        # --- START OF FIX ---
-        # Dashboard agent doesn't use cache in this setup, so direct kickoff
+    
         print(f"Running Dashboard Agent for prompt: '{prompt}'...")
 
         task = Task(
@@ -58,9 +57,8 @@ class DashboardAgent:
         crew = Crew(
             agents=[self.agent],
             tasks=[task],
-            verbose=True # Set to 0 for no logging, 1 for task execution, 2 for full details
+            verbose=True
         )
 
         resp = crew.kickoff()
-        # --- END OF FIX ---
         return resp

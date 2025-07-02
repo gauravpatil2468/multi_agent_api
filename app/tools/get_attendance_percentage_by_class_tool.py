@@ -11,6 +11,5 @@ def get_attendance_percentage_by_class_tool(course_name: Optional[str] = None) -
     If 'course_name' is omitted, returns attendance percentage for all classes.
     Returns a dictionary of attendance percentages for each class.
     """
-    # Assume MongoDBTool().get_attendance_percentage_by_class returns a dictionary
-    # mapping class names to their attendance percentages.
+ 
     return MongoDBTool().get_attendance_percentage_by_class(course_name=course_name)

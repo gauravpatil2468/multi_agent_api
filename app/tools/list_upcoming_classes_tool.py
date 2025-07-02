@@ -8,5 +8,5 @@ def list_upcoming_classes_tool() -> list:
     (e.g., 'What classes are available this week?').
     Returns a list of classes with their course, instructor, status, and date.
     """
-    # Assume MongoDBTool().list_upcoming_classes returns a list of dictionaries/objects
+
     return MongoDBTool().list_upcoming_classes()

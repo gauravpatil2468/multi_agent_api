@@ -8,8 +8,6 @@ def calculate_pending_dues_tool(client_query: str) -> str:
     The input should be the client's name, email, or phone number to calculate their pending dues.
     Returns the client's name and total pending dues.
     """
-    # Your actual MongoDBTool call
+  
     return MongoDBTool().calculate_pending_dues(client_query)
 
-# In your agent's tools list, you would use:
-# tools=[calculate_pending_dues_tool, ...]

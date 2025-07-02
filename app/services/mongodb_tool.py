@@ -13,11 +13,8 @@ class MongoDBTool:
             ]
         })
         if client:
-            # Keep _id as its original type (int in this case) for internal queries
-            # Only convert to string if strictly for JSON serialization output or if you need to pass it around as string
-            # For internal DB queries, use the native type.
             if 'dob' in client and isinstance(client['dob'], datetime):
-                client['dob'] = client['dob'].strftime("%Y-%m-%d") # Format DOB
+                client['dob'] = client['dob'].strftime("%Y-%m-%d") 
         return client
 
     def get_client_enrolled_services(self, client_query: str) -> List[Dict[str, Any]]:
@@ -38,10 +35,9 @@ class MongoDBTool:
         if not client:
             return []
 
-        # --- FIX STARTS HERE ---
-        # Use client["_id"] directly as it's an integer in your seed data
+      
         query = {"client_id": client["_id"]} 
-        # --- FIX ENDS HERE ---
+    
         
         if status:
             query["status"] = {"$regex": status, "$options": "i"}
@@ -53,9 +49,9 @@ class MongoDBTool:
         """Retrieves payment details for a specific order."""
         payment = db.payments.find_one({"order_id": order_id})
         if payment:
-            payment['_id'] = str(payment['_id']) # This is fine if payment['_id'] is ObjectId
+            payment['_id'] = str(payment['_id']) 
             if 'date' in payment and isinstance(payment['date'], datetime):
-                payment['date'] = payment['date'].isoformat() # Convert datetime to string
+                payment['date'] = payment['date'].isoformat()
         return payment
 
     def calculate_pending_dues(self, client_query: str) -> str:
@@ -64,10 +60,9 @@ class MongoDBTool:
         if not client:
             return f"Client '{client_query}' not found."
 
-        # --- FIX STARTS HERE ---
-        # Use client["_id"] directly as it's an integer in your seed data
+      
         pending_orders = list(db.orders.find({"client_id": client["_id"], "status": "pending"}))
-        # --- FIX ENDS HERE ---
+
 
         total_pending = sum(order.get("amount", 0) for order in pending_orders)
         return f"Client: {client['name']}, Total Pending Dues: ${total_pending:.2f}"
@@ -90,12 +85,12 @@ class MongoDBTool:
         }, {"_id": 0}))
         return classes
 
-    # Dashboard Agent Specific Methods (Aggregations)
+
     def get_total_revenue_this_month(self) -> float:
         """Calculates total revenue from paid orders this current month."""
         start_of_month = datetime.now().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
         pipeline = [
-            {"$match": {"status": "completed", "date": {"$gte": start_of_month}}}, # Assuming 'completed' is the completion status for payments
+            {"$match": {"status": "completed", "date": {"$gte": start_of_month}}}, 
             {"$group": {"_id": None, "total_revenue": {"$sum": "$amount"}}}
         ]
         result = list(db.payments.aggregate(pipeline))
@@ -160,21 +155,13 @@ class MongoDBTool:
         attendance_reports = []
 
         for cls in classes:
-            # IMPORTANT: Ensure _id is handled correctly. If _id in 'classes' is ObjectId, 
-            # and class_id in 'attendance' is also ObjectId, then direct comparison works.
-            # If class_id in attendance is an int while _id in classes is ObjectId, 
-            # you'd still have a type mismatch. Assuming _id from classes.find() matches 
-            # the type of class_id in attendance collection. 
-            
-            # If your class_id in attendance is an integer and _id in classes is also an integer (from seeding),
-            # then direct comparison `cls["_id"]` should work.
             
             total_attended = db.attendance.count_documents({"class_id": cls["_id"], "present": True})
             total_students_enrolled_in_class = db.attendance.count_documents({"class_id": cls["_id"]}) 
             
             percentage = (total_attended / total_students_enrolled_in_class * 100) if total_students_enrolled_in_class > 0 else 0
             attendance_reports.append({
-                "class_id": str(cls["_id"]), # Convert to string for consistent output
+                "class_id": str(cls["_id"]), 
                 "course": cls.get("course", "N/A"),
                 "instructor": cls.get("instructor", "N/A"),
                 "date": cls.get("date", "N/A"),

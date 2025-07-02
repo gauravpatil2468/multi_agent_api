@@ -10,6 +10,5 @@ def get_top_services_tool(limit: Optional[int] = 3) -> list:
     If 'limit' is omitted, it defaults to 3.
     Returns a list of the most popular services.
     """
-    # Assume MongoDBTool().get_top_services returns a list of dictionaries/objects
-    # e.g., [{'service_name': 'Yoga Beginner', 'enrollments': 150}, ...]
+  
     return MongoDBTool().get_top_services(limit=limit)

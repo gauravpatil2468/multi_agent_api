@@ -8,5 +8,5 @@ def get_client_enrolled_services_tool(client_query: str) -> list:
     The input should be the client's name, email, or phone number to look up their enrolled services (e.g., 'Rahul Singh').
     Returns a list of enrolled services and their status for the client.
     """
-    # Assume MongoDBTool().get_client_enrolled_services returns a list of dictionaries/objects
+    
     return MongoDBTool().get_client_enrolled_services(client_query)

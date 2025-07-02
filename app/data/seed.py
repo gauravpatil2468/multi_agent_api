@@ -2,7 +2,6 @@ from app.core.database import db
 from datetime import datetime, timedelta
 
 def seed():
-    # Clear existing data for fresh start (optional, for development)
     print("Clearing existing data...")
     db.clients.delete_many({})
     db.orders.delete_many({})
@@ -12,7 +11,7 @@ def seed():
     db.attendance.delete_many({})
     print("Data cleared.")
 
-    # Clients
+
     print("Seeding clients...")
     db.clients.insert_many([
         {"_id": 1, "name":"Priya Sharma","email":"priya@example.com","phone":"9999999999", "status": "active", "enrolled_services": ["Yoga Beginner"], "created_at": datetime.now() - timedelta(days=60), "dob": datetime(1990, 7, 1)},
@@ -23,7 +22,7 @@ def seed():
     ])
     print("Clients seeded.")
 
-    # Courses
+
     print("Seeding courses...")
     db.courses.insert_many([
         {"_id": 101, "name": "Yoga Beginner", "description": "Introduction to Yoga", "price": 100},
@@ -33,7 +32,7 @@ def seed():
     ])
     print("Courses seeded.")
 
-    # Classes
+
     print("Seeding classes...")
     db.classes.insert_many([
         {"_id": 201, "course":"Yoga Beginner", "instructor":"Anjali", "status":"upcoming", "date":"2025-07-07", "time": "10:00 AM"},
@@ -44,7 +43,7 @@ def seed():
     ])
     print("Classes seeded.")
 
-    # Orders
+
     print("Seeding orders...")
     db.orders.insert_many([
         {"_id": 1, "order_id":12345, "client_id": 1, "client_name":"Priya Sharma", "course":"Yoga Beginner", "status":"pending", "amount": 100, "created_at": datetime.now() - timedelta(days=2)},
@@ -55,7 +54,7 @@ def seed():
     ])
     print("Orders seeded.")
 
-    # Payments
+
     print("Seeding payments...")
     db.payments.insert_many([
         {"_id": 1, "order_id": 54321, "amount": 150, "date": datetime.now() - timedelta(days=9), "status": "completed"},
@@ -64,7 +63,7 @@ def seed():
     ])
     print("Payments seeded.")
 
-    # Attendance (Example for a class 203: Zumba Basics)
+
     print("Seeding attendance...")
     db.attendance.insert_many([
         {"_id": 1, "class_id": 203, "course": "Zumba Basics", "date": "2025-06-25", "client_id": 4, "client_name": "Neha Reddy", "present": True},

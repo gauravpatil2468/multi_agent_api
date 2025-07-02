@@ -16,9 +16,9 @@ class APIResponse(BaseModel):
     data: Optional[Dict[str, Any]] = Field(None, description="The data returned by the operation, if any.")
     cached: Optional[bool] = Field(None, description="Indicates if the response was served from cache.")
 
-# Example response models for agents (can be more specific)
+
 class AgentResponseData(BaseModel):
     agent_response: Any = Field(..., description="The raw response from the agent.")
 
 class AgentAPIResponse(APIResponse):
-    data: AgentResponseData # Override data field with specific type
+    data: AgentResponseData

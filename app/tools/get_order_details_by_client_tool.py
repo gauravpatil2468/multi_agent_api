@@ -15,5 +15,5 @@ def get_order_details_by_client_tool(client_query: str, status: Optional[str] = 
     Returns:
         list: A list of matching orders.
     """
-    # Assume MongoDBTool().get_order_details_by_client returns a list of order dictionaries/objects
+  
     return MongoDBTool().get_order_details_by_client(client_query=client_query, status=status)

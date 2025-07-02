@@ -1,10 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from app.services.external_api import ExternalAPI
-from app.models.common import ClientCreate, OrderCreate, APIResponse # Import Pydantic models
+from app.models.common import ClientCreate, OrderCreate, APIResponse 
 
 router = APIRouter()
 
-# Dependency for ExternalAPI
 def get_external_api_instance() -> ExternalAPI:
     """Provides an ExternalAPI instance."""
     return ExternalAPI()
@@ -16,8 +15,8 @@ def get_external_api_instance() -> ExternalAPI:
     description="Creates a new client record in the database."
 )
 async def create_client(
-    data: ClientCreate, # Use Pydantic model for request body
-    api: ExternalAPI = Depends(get_external_api_instance) # Inject service
+    data: ClientCreate, 
+    api: ExternalAPI = Depends(get_external_api_instance) 
 ):
     """
     Endpoint to create a new client.
@@ -38,8 +37,8 @@ async def create_client(
     description="Creates a new order in the database for a specified client and course. [cite: 33]"
 )
 async def create_order(
-    data: OrderCreate, # Use Pydantic model for request body
-    api: ExternalAPI = Depends(get_external_api_instance) # Inject service
+    data: OrderCreate,
+    api: ExternalAPI = Depends(get_external_api_instance) 
 ):
     """
     Endpoint to create a new order.
@@ -48,12 +47,12 @@ async def create_order(
         result = api.create_order(data)
         if "error" in result:
              raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND, # Use 404 if client not found
+                status_code=status.HTTP_404_NOT_FOUND, 
                 detail=result["error"]
             )
         return APIResponse(message="Order created successfully.", data=result)
     except HTTPException as http_exc:
-        raise http_exc # Re-raise FastAPI HTTP exceptions
+        raise http_exc 
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

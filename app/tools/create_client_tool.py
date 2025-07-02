@@ -11,5 +11,5 @@ def create_client_tool(name: str, email: EmailStr, phone: str) -> dict:
     Example: 'Register a new client named John Doe with email john@example.com and phone 1234567890'.
     """
     client_data = ClientCreate(name=name, email=email, phone=phone)
-    # Assume ExternalAPI().create_client returns a dictionary representing the created client
+
     return ExternalAPI().create_client(client_data)

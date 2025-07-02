@@ -10,5 +10,5 @@ def get_client_details_tool(query: str) -> dict | None:
     Returns the client's basic information (name, email, phone, status, enrolled services) if found,
     otherwise returns None or an empty dictionary.
     """
-    # Assume MongoDBTool().get_client returns a dictionary of client details or None if not found
+
     return MongoDBTool().get_client(query)

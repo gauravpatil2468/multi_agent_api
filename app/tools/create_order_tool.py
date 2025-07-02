@@ -11,5 +11,5 @@ def create_order_tool(client_name: str, course_name: str) -> dict:
     Returns the ID of the newly created order.
     """
     order = OrderCreate(client_name=client_name, course_name=course_name)
-    # Assume ExternalAPI().create_order returns a dictionary with the order ID or similar
+
     return ExternalAPI().create_order(order)

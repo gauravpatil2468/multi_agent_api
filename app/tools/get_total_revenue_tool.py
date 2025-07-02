@@ -7,5 +7,5 @@ def get_total_revenue_this_month_tool() -> float:
     Useful for calculating the total revenue generated from all completed payments this current month.
     Returns the total revenue as a numerical value (float).
     """
-    # Assume MongoDBTool().get_total_revenue_this_month returns a float
+
     return MongoDBTool().get_total_revenue_this_month()

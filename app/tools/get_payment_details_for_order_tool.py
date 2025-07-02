@@ -8,5 +8,5 @@ def get_payment_details_for_order_tool(order_id: int) -> dict | None:
     The input should be the numerical ID of the order to retrieve payment details for (e.g., 'What are the payment details for order 54321?').
     Returns a dictionary with payment details if found, otherwise None.
     """
-    # Assume MongoDBTool().get_payment_details_for_order returns a dictionary of payment details or None
+
     return MongoDBTool().get_payment_details_for_order(order_id)
