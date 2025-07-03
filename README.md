@@ -50,7 +50,7 @@ docker build -t multi-agent-api .
 
 # Run container with .env
 docker run -p 10000:10000 --env-file .env multi-agent-api
-#Local Development
+# Local Deployment
 # Install dependencies
 pip install -r requirements.txt
 
