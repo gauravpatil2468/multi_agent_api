@@ -41,10 +41,8 @@ Copy
 Edit
 GET /support/query?q=Get%20priya%20sharma%20details
 session-id: abc123
-🐳 Docker Setup
-bash
-Copy
-Edit
+# 🐳 Docker Setup
+
 # Build image
 docker build -t multi-agent-api .
 
