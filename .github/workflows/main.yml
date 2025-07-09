@@ -23,7 +23,7 @@ jobs:
           ATTEMPT=1
 
           while [ $ATTEMPT -le $MAX_RETRIES ]; do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://multi-agent-api-g6gf.onrender.com/)
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://multi-agent-api-q5ad.onrender.com)
             echo "Attempt $ATTEMPT: Response Code: $STATUS"
 
             if [ "$STATUS" -eq 200 ]; then
